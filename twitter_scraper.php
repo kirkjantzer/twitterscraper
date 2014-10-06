@@ -11,7 +11,7 @@ function search(array $query)
   $toa = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
   return $toa->get('search/tweets', $query);
 }
-$q = $_POST["q"];
+$q = $_GET["q"];
  
 $query = array(
   "q" => $q,
