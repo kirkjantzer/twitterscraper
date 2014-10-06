@@ -24,10 +24,6 @@ $results = search($query);
 if ($_GET["format"] == "table")
 {
   echo "<html><head><title>My Scraper</title></head><body><table border='1'>";
-  echo "<form action=". $_SERVER[PHP_SELF] ." method=post>";
-  echo "<input type='text' name='q'>";
-  echo "<input value='Search' type='submit'>";
-  echo "</form>";
   echo "<tr>";
   echo "<td>Created at</td>";
   echo "<td>Screen name</td>";
