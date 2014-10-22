@@ -28,20 +28,15 @@ $dbname = "tweets";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-
 // Check connection
-if (!$conn) 
-{
-  die("Database connection failed: " . mysqli_connect_error());
-}
-if (!$mysqli->query("SET @a:='this will not work'")) 
-{
-  printf("Error: %s\n", $mysqli->error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 foreach ($results->statuses as $result) 
-{
-  $dbresult = $mysqli->query('SELECT tweetid FROM tweets where `tweetid` = `$result->id`', MYSQLI_USE_RESULT);
+{ 
+  $sql = "SELECT tweetid FROM tweets where `tweetid` = `$result->id`";
+  $dbresult = mysqli_query($conn, $sql);
   if (!empty($dbresult)) 
   {
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
