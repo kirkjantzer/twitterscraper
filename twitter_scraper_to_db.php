@@ -49,7 +49,7 @@ foreach ($results->statuses as $result)
   }
 
   // Close result
-  $result->close();
+  $dbresult->close();
 }
 
 // Close connection
