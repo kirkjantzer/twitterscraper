@@ -42,7 +42,7 @@ if (!$mysqli->query("SET @a:='this will not work'"))
 foreach ($results->statuses as $result) 
 {
   $dbresult = $mysqli->query('SELECT tweetid FROM tweets where `tweetid` = `$result->id`', MYSQLI_USE_RESULT);
-  if (!empty(dbresult)) 
+  if (!empty($dbresult)) 
   {
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
     preg_match("/>([^<]*)</", $result->source, $source_output_array);
