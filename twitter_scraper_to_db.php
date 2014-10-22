@@ -47,9 +47,6 @@ foreach ($results->statuses as $result)
     $sql = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_coordinates, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ($result->id, $result->user->id, $result->user->screen_name, $result->user->name, $geo, $result->place->name, $result->place->full_name, $result->place->country_code, $geo_bounding_box, $result->retweet_count, $result->favorite_count, $source_output_array[1], $result->user->location, $result->user->description, $tweet, $result->created_at, $result->user->followers_count, $result->user->friends_count, $result->user->statuses_count, $result->user->favourites_count, $result->user->listed_count, $result->user->time_zone, $result->user->lang)";
     mysqli_query($conn, $sql);
   }
-
-  // Close result
-  $dbresult->close();
 }
 
 // Close connection
