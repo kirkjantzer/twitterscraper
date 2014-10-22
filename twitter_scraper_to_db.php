@@ -37,7 +37,7 @@ foreach ($results->statuses as $result)
 { 
   $sql = "SELECT tweetid FROM tweets where `tweetid` = `$result->id`";
   $dbresult = mysqli_query($conn, $sql);
-  if (!empty($dbresult)) 
+  if (empty($dbresult)) 
   {
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
     preg_match("/>([^<]*)</", $result->source, $source_output_array);
@@ -45,6 +45,7 @@ foreach ($results->statuses as $result)
     $geo_bounding_box = $result->place->bounding_box[0] . "," . $result->place->bounding_box[1] . "," . $result->place->bounding_box[2] . "," . $result->place->bounding_box[3];
 
     $sql = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_coordinates, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ($result->id, $result->user->id, $result->user->screen_name, $result->user->name, $geo, $result->place->name, $result->place->full_name, $result->place->country_code, $geo_bounding_box, $result->retweet_count, $result->favorite_count, $source_output_array[1], $result->user->location, $result->user->description, $tweet, $result->created_at, $result->user->followers_count, $result->user->friends_count, $result->user->statuses_count, $result->user->favourites_count, $result->user->listed_count, $result->user->time_zone, $result->user->lang)";
+    echo $sql;
     mysqli_query($conn, $sql);
   }
 }
