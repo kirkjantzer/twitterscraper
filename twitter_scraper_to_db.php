@@ -49,7 +49,7 @@ foreach ($results->statuses as $result)
     //mysqli_query($conn, $sql);
   }
 }
-
+var_dump($results);
 // Close connection
 mysqli_close($conn);
 ?>
