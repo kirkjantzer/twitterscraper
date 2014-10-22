@@ -50,5 +50,5 @@ foreach ($results->statuses as $result)
 }
 
 // Close connection
-$mysqli->close();
+mysqli_close($conn);
 ?>
