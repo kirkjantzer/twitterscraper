@@ -43,7 +43,6 @@ foreach ($results->statuses as $result)
     preg_match("/>([^<]*)</", $result->source, $source_output_array);
     if (!empty($result->geo->coordinates)) {$geo = $result->geo->coordinates[0] . "," . $result->geo->coordinates[1];} else {$geo = "";}
     if (!empty($result->place->bounding_box)) {$geo_bounding_box = $result->place->bounding_box->coordinates[0][0][0] . "," . $result->place->bounding_box->coordinates[0][0][1] . "," . $result->place->bounding_box->coordinates[0][1][0] . "," . $result->place->bounding_box->coordinates[0][1][1] . "," . $result->place->bounding_box->coordinates[0][2][0] . "," . $result->place->bounding_box->coordinates[0][2][1] . "," . $result->place->bounding_box->coordinates[0][3][0] . "," . $result->place->bounding_box->coordinates[0][3][1];} else {$geo_bounding_box = "";}
-    echo $result->id . ": " . $geo . "\n";
     $result_tweetid = $result->id; 
     $result_user_id = $result->user->id; 
     $result_user_screenname = $result->user->screen_name; 
