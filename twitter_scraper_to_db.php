@@ -41,18 +41,18 @@ foreach ($results->statuses as $result)
   {
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
     preg_match("/>([^<]*)</", $result->source, $source_output_array);
-    if (!empty($result->geo->coordinates)) {$geo = $result->geo->coordinates[0] . "," . $result->geo->coordinates[1];} else {$geo = "";}
-    if (!empty($result->place->bounding_box)) {$geo_bounding_box = $result->place->bounding_box->coordinates[0][0][0] . "," . $result->place->bounding_box->coordinates[0][0][1] . "," . $result->place->bounding_box->coordinates[0][1][0] . "," . $result->place->bounding_box->coordinates[0][1][1] . "," . $result->place->bounding_box->coordinates[0][2][0] . "," . $result->place->bounding_box->coordinates[0][2][1] . "," . $result->place->bounding_box->coordinates[0][3][0] . "," . $result->place->bounding_box->coordinates[0][3][1];} else {$geo_bounding_box = "";}
+    if (!empty($result->geo->coordinates)) {$geo = $result->geo->coordinates[0] . "," . $result->geo->coordinates[1];} else {$geo = null;}
+    if (!empty($result->place->bounding_box)) {$geo_bounding_box = $result->place->bounding_box->coordinates[0][0][0] . "," . $result->place->bounding_box->coordinates[0][0][1] . "," . $result->place->bounding_box->coordinates[0][1][0] . "," . $result->place->bounding_box->coordinates[0][1][1] . "," . $result->place->bounding_box->coordinates[0][2][0] . "," . $result->place->bounding_box->coordinates[0][2][1] . "," . $result->place->bounding_box->coordinates[0][3][0] . "," . $result->place->bounding_box->coordinates[0][3][1];} else {$geo_bounding_box = null;}
     
     $result_tweetid = mysqli_real_escape_string($conn, $result->id); 
     $result_user_id = mysqli_real_escape_string($conn, $result->user->id); 
     $result_user_screenname = mysqli_real_escape_string($conn, $result->user->screen_name); 
     $result_user_name = mysqli_real_escape_string($conn, $result->user->name); 
     $result_geo = mysqli_real_escape_string($conn, $geo); 
-    if (!empty($result->place->name)) {$result_place_name = mysqli_real_escape_string($conn, $result->place->name);} else {$result_place_name = "";}
-    if (!empty($result->place->full_name)) {$result_place_full_name = mysqli_real_escape_string($conn, $result->place->full_name);} else {$result_place_full_name = "";}
-    if (!empty($result->place->country_code)) {$result_place_country_code = mysqli_real_escape_string($conn, $result->place->country_code);} else {$result_place_country_code = "";}
-    if (!empty($result->place->country)) {$result_place_country = mysqli_real_escape_string($conn, $result->place->country);} else {$result_place_country = "";}
+    if (!empty($result->place->name)) {$result_place_name = mysqli_real_escape_string($conn, $result->place->name);} else {$result_place_name = null;}
+    if (!empty($result->place->full_name)) {$result_place_full_name = mysqli_real_escape_string($conn, $result->place->full_name);} else {$result_place_full_name = null;}
+    if (!empty($result->place->country_code)) {$result_place_country_code = mysqli_real_escape_string($conn, $result->place->country_code);} else {$result_place_country_code = null;}
+    if (!empty($result->place->country)) {$result_place_country = mysqli_real_escape_string($conn, $result->place->country);} else {$result_place_country = null;}
     $result_geo_bounding_box = mysqli_real_escape_string($conn, $geo_bounding_box); 
     $result_retweet_count = mysqli_real_escape_string($conn, $result->retweet_count); 
     $result_favorite_count = mysqli_real_escape_string($conn, $result->favorite_count); 
