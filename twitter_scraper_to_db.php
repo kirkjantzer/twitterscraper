@@ -49,10 +49,10 @@ foreach ($results->statuses as $result)
     $result_user_screenname = $result->user->screen_name; 
     $result_user_name = $result->user->name; 
     $result_geo = $geo; 
-    if (!empty($result->place->name)) {$result_place_name = $result->place->name;} else {$result_place_name = ""}
-    if (!empty($result->place->full_name)) {$result_place_full_name = $result->place->full_name;} else {$result_place_full_name = ""}
-    if (!empty($result->place->country_code)) {$result_place_country_code = $result->place->country_code;} else {$result_place_country_code = ""}
-    if (!empty($result->place->country)) {$result_place_country = $result->place->country;} else {$result_place_country = ""}
+    if (!empty($result->place->name)) {$result_place_name = $result->place->name;} else {$result_place_name = "";}
+    if (!empty($result->place->full_name)) {$result_place_full_name = $result->place->full_name;} else {$result_place_full_name = "";}
+    if (!empty($result->place->country_code)) {$result_place_country_code = $result->place->country_code;} else {$result_place_country_code = "";}
+    if (!empty($result->place->country)) {$result_place_country = $result->place->country;} else {$result_place_country = "";}
     $result_geo_bounding_box = $geo_bounding_box; 
     $result_retweet_count = $result->retweet_count; 
     $result_favorite_count = $result->favorite_count; 
