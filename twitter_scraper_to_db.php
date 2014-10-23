@@ -44,8 +44,32 @@ foreach ($results->statuses as $result)
     if (!empty($result->geo->coordinates)) {$geo = $result->geo->coordinates[0] . "," . $result->geo->coordinates[1];} else {$geo = "";}
     if (!empty($result->place->bounding_box)) {$geo_bounding_box = $result->place->bounding_box->coordinates[0][0][0] . "," . $result->place->bounding_box->coordinates[0][0][1] . "," . $result->place->bounding_box->coordinates[0][1][0] . "," . $result->place->bounding_box->coordinates[0][1][1] . "," . $result->place->bounding_box->coordinates[0][2][0] . "," . $result->place->bounding_box->coordinates[0][2][1] . "," . $result->place->bounding_box->coordinates[0][3][0] . "," . $result->place->bounding_box->coordinates[0][3][1];} else {$geo_bounding_box = "";}
     echo $result->id . ": " . $geo . "\n";
+    $result_tweetid = $result->id; 
+    $result_user_id = $result->user->id; 
+    $result_user_screenname = $result->user->screen_name; 
+    $result_user_name = $result->user->name; 
+    $result_geo = $geo; 
+    $result_place_name = $result->place->name; 
+    $result_place_full_name = $result->place->full_name; 
+    $result_place_country_code = $result->place->country_code; 
+    $result_geo_bounding_box = $geo_bounding_box; 
+    $result_retweet_count = $result->retweet_count; 
+    $result_favorite_count = $result->favorite_count; 
+    $result_source_output_array = $source_output_array[1]; 
+    $result_user_location = $result->user->location; 
+    $result_user_description = $result->user->description; 
+    $result_tweet = $tweet; 
+    $result_created_at = $result->created_at; 
+    $result_user_followers_count = $result->user->followers_count; 
+    $result_user_friends_count = $result->user->friends_count; 
+    $result_user_statuses_count = $result->user->statuses_count; 
+    $result_user_favourites_count = $result->user->favourites_count; 
+    $result_user_listed_count = $result->user->listed_count; 
+    $result_user_time_zone = $result->user->time_zone; 
+    $result_user_lang = $result->user->lang;
     //$sql = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_coordinates, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ('$result->id', '$result->user->id', '$result->user->screen_name', '$result->user->name', '', '$result->place->name', '$result->place->full_name', '$result->place->country_code', '', '$result->retweet_count', '$result->favorite_count', '', '$result->user->location', '$result->user->description', '', '$result->created_at', '$result->user->followers_count', '$result->user->friends_count', '$result->user->statuses_count', '$result->user->favourites_count', '$result->user->listed_count', '$result->user->time_zone', '$result->user->lang')";
-    $sql = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_coordinates, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES (serialize($result->id), serialize($result->user->id), serialize($result->user->screen_name), serialize($result->user->name), serialize($geo), serialize($result->place->name), serialize($result->place->full_name), serialize($result->place->country_code), serialize($geo_bounding_box), serialize($result->retweet_count), serialize($result->favorite_count), serialize($source_output_array[1]), serialize($result->user->location), serialize($result->user->description), serialize($tweet), serialize($result->created_at), serialize($result->user->followers_count), serialize($result->user->friends_count), serialize($result->user->statuses_count), serialize($result->user->favourites_count), serialize($result->user->listed_count), serialize($result->user->time_zone), serialize($result->user->lang))";
+    $sql = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_coordinates, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ($result_tweetid, $result_user_id, $result_user_screenname, $result_user_name, $result_geo, $result_place_name, $result_place_full_name, $result_place_country_code, $result_geo_bounding_box, $result_retweet_count, $result_favorite_count, $result_source_output_array, $result_user_location, $result_user_description, $result_tweet, $result_created_at, $result_user_followers_count, $result_user_friends_count, $result_user_statuses_count, $result_user_favourites_count, $result_user_listed_count, $result_user_time_zone, $result_user_lang)";
+
     echo $sql;
     //mysqli_query($conn, $sql);
   }
