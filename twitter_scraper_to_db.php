@@ -17,6 +17,7 @@ $query = array(
   "q" => $q,
   "count" => "100",
   "result_type" => "recent",
+  "geocode" => "33.809266,-117.918878,.2km",
 );
   
 $results = search($query);
