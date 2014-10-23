@@ -35,8 +35,8 @@ if (!$conn) {
 
 foreach ($results->statuses as $result) 
 { 
-  $sql = "SELECT tweetid FROM tweets where `tweetid` = `$result->id`";
-  $dbresult = mysqli_query($conn, $sql);
+  $sql_checkfortweet = "SELECT tweetid FROM tweets where `tweetid` = `$result->id`";
+  $dbresult = mysqli_query($conn, $sql_checkfortweet);
   if (empty($dbresult)) 
   {
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
@@ -67,8 +67,8 @@ foreach ($results->statuses as $result)
     $result_user_listed_count = $result->user->listed_count; 
     $result_user_time_zone = $result->user->time_zone; 
     $result_user_lang = $result->user->lang;
-    $sql = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_coordinates, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_country, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ($result_tweetid, $result_user_id, $result_user_screenname, $result_user_name, $result_geo, $result_place_name, $result_place_full_name, $result_place_country_code, $result_place_country, $result_geo_bounding_box, $result_retweet_count, $result_favorite_count, $result_source_output_array, $result_user_location, $result_user_description, $result_tweet, $result_created_at, $result_user_followers_count, $result_user_friends_count, $result_user_statuses_count, $result_user_favourites_count, $result_user_listed_count, $result_user_time_zone, $result_user_lang)";
-    mysqli_query($conn, $sql);
+    $sql_insert = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_coordinates, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_country, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ($result_tweetid, $result_user_id, $result_user_screenname, $result_user_name, $result_geo, $result_place_name, $result_place_full_name, $result_place_country_code, $result_place_country, $result_geo_bounding_box, $result_retweet_count, $result_favorite_count, $result_source_output_array, $result_user_location, $result_user_description, $result_tweet, $result_created_at, $result_user_followers_count, $result_user_friends_count, $result_user_statuses_count, $result_user_favourites_count, $result_user_listed_count, $result_user_time_zone, $result_user_lang)";
+    mysqli_query($conn, $sql_insert);
   }
 }
 // Close connection
