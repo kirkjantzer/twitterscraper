@@ -43,7 +43,7 @@ foreach ($results->statuses as $result)
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
     preg_match("/>([^<]*)</", $result->source, $source_output_array);
     if (!empty($result->geo->coordinates)) {$geo = $result->geo->coordinates[0] . "," . $result->geo->coordinates[1];} else {$geo = NULL;}
-    if (!empty($result->place->bounding_box)) {$geo_bounding_box = $result->place->bounding_box->coordinates[0][0][0] . "," . $result->place->bounding_box->coordinates[0][0][1] . "," . $result->place->bounding_box->coordinates[0][1][0] . "," . $result->place->bounding_box->coordinates[0][1][1] . "," . $result->place->bounding_box->coordinates[0][2][0] . "," . $result->place->bounding_box->coordinates[0][2][1] . "," . $result->place->bounding_box->coordinates[0][3][0] . "," . $result->place->bounding_box->coordinates[0][3][1];} else {$geo_bounding_box = NULL;}
+    if (!empty($result->place->bounding_box)) {$geo_bounding_box = $result->place->bounding_box->coordinates[0][0][1] . "," . $result->place->bounding_box->coordinates[0][0][0] . "," . $result->place->bounding_box->coordinates[0][1][1] . "," . $result->place->bounding_box->coordinates[0][1][0] . "," . $result->place->bounding_box->coordinates[0][2][1] . "," . $result->place->bounding_box->coordinates[0][2][0] . "," . $result->place->bounding_box->coordinates[0][3][1] . "," . $result->place->bounding_box->coordinates[0][3][0];} else {$geo_bounding_box = NULL;}
     
     $result_tweetid = mysqli_real_escape_string($conn, $result->id); 
     $result_user_id = mysqli_real_escape_string($conn, $result->user->id); 
