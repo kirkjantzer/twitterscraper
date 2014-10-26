@@ -39,7 +39,6 @@ foreach ($results->statuses as $result)
   $tweetid = $result->id;
   $sql_checkfortweet = "SELECT * FROM tweets where `tweetid` = $tweetid";
   $dbresult = mysqli_query($conn, $sql_checkfortweet) or die(mysqli_error($conn));
-  echo $dbresult;
   if (empty($dbresult)) 
   {
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
