@@ -36,7 +36,7 @@ if (!$conn) {
 
 foreach ($results->statuses as $result) 
 { 
-  $tweetid = $result->id
+  $tweetid = $result->id;
   $sql_checkfortweet = "SELECT tweetid FROM tweets where tweetid = '$tweetid'";
   $dbresult = mysqli_query($conn, $sql_checkfortweet);
   if (empty($dbresult)) 
