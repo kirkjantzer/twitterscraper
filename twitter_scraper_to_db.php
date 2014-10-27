@@ -12,12 +12,13 @@ function search(array $query)
   return $toa->get('search/tweets', $query);
 }
 $q = $argv[1];
+$g = $argv[2];
  
 $query = array(
   "q" => $q,
   "count" => "100",
   "result_type" => "recent",
-  "geocode" => "33.809266,-117.918878,.2km",
+  "geocode" => $g,
 );
   
 $results = search($query);
