@@ -19,8 +19,8 @@ if (mysqli_num_rows($dbresult) > 0) {
     // output data of each row
     while($row = mysqli_fetch_assoc($dbresult)) 
     {
-      $text = $row->tweet;
-      $id = $row->id;
+      $text = $row['tweet'];
+      $id = $row['id'];
       echo $id . ": " . $text; 
       $key = "932701ee8404e52ba67d3cf99478cbb08550263c";
       $url = "https://www.tweetsentimentapi.com/api/?key=$key&text=$text";
