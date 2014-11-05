@@ -17,7 +17,7 @@ $num_dbresult = mysqli_num_rows($dbresult);
 
 if (mysqli_num_rows($dbresult) > 0) {
     // output data of each row
-    while($row = mysqli_fetch_assoc($result)) 
+    while($row = mysqli_fetch_assoc($dbresult)) 
     {
       $text = $row->tweet;
       $id = $row->id;
