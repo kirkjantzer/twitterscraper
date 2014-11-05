@@ -43,6 +43,16 @@ foreach ($results->statuses as $result)
   if ($num_dbresult == 0) 
   {
     $tweet = preg_replace(array('/\r/', '/\n/'), '', $result->text);
+    
+    $key = "932701ee8404e52ba67d3cf99478cbb08550263c";
+    $url = "https://www.tweetsentimentapi.com/api/?key=$key&text=$tweet";
+    $response = file_get_contents($url);
+    $jsonoutput = json_decode($response);
+    $tweet_sentiment = "";
+    $tweet_sentimentscore = "";
+    if (!empty($jsonoutput->sentiment)) {$tweet_sentiment = $jsonoutput->sentiment;} else {$tweet_sentiment = NULL;}
+    if (!empty($jsonoutput->score)) {$tweet_sentimentscore = $jsonoutput->score;} else {$tweet_sentimentscore = NULL;}
+      
     preg_match("/>([^<]*)</", $result->source, $source_output_array);
     if (!empty($result->geo->coordinates)) {$geo_lat = $result->geo->coordinates[0]; $geo_long = $result->geo->coordinates[1];} else {$geo_lat = NULL;$geo_long = NULL;}
     if (!empty($result->place->bounding_box)) {$geo_bounding_box = $result->place->bounding_box->coordinates[0][0][1] . "," . $result->place->bounding_box->coordinates[0][0][0] . "," . $result->place->bounding_box->coordinates[0][1][1] . "," . $result->place->bounding_box->coordinates[0][1][0] . "," . $result->place->bounding_box->coordinates[0][2][1] . "," . $result->place->bounding_box->coordinates[0][2][0] . "," . $result->place->bounding_box->coordinates[0][3][1] . "," . $result->place->bounding_box->coordinates[0][3][0];} else {$geo_bounding_box = NULL;}
@@ -72,7 +82,7 @@ foreach ($results->statuses as $result)
     $result_user_listed_count = mysqli_real_escape_string($conn, $result->user->listed_count); 
     $result_user_time_zone = mysqli_real_escape_string($conn, $result->user->time_zone); 
     $result_user_lang = mysqli_real_escape_string($conn, $result->user->lang);
-    $sql_insert = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_lat, tweet_geo_long, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_country, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ('$result_tweetid', '$result_user_id', '$result_user_screenname', '$result_user_name', '$result_geo_lat', '$result_geo_long', '$result_place_name', '$result_place_full_name', '$result_place_country_code', '$result_place_country', '$result_geo_bounding_box', '$result_retweet_count', '$result_favorite_count', '$result_source_output_array', '$result_user_location', '$result_user_description', '$result_tweet', '$result_created_at', '$result_user_followers_count', '$result_user_friends_count', '$result_user_statuses_count', '$result_user_favourites_count', '$result_user_listed_count', '$result_user_time_zone', '$result_user_lang')";
+    $sql_insert = "INSERT INTO tweets (tweetid, userid, screenname, name, tweet_geo_lat, tweet_geo_long, tweet_place_name, tweet_place_fullname, tweet_place_countrycode, tweet_place_country, tweet_place_boundingbox_coordinates, tweet_retweets, tweet_favorites, source, location, description, tweet, tweet_sentiment, tweet_sentimentscore, tweetdate, followers_count, friends_count, statuses_count, favourites_count, listed_count, time_zone, lang) VALUES ('$result_tweetid', '$result_user_id', '$result_user_screenname', '$result_user_name', '$result_geo_lat', '$result_geo_long', '$result_place_name', '$result_place_full_name', '$result_place_country_code', '$result_place_country', '$result_geo_bounding_box', '$result_retweet_count', '$result_favorite_count', '$result_source_output_array', '$result_user_location', '$result_user_description', '$result_tweet', '$tweet_sentiment', '$tweet_sentimentscore' '$result_created_at', '$result_user_followers_count', '$result_user_friends_count', '$result_user_statuses_count', '$result_user_favourites_count', '$result_user_listed_count', '$result_user_time_zone', '$result_user_lang')";
     mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
   }
 }
