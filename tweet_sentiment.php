@@ -11,7 +11,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql_checkfortweet = "SELECT * FROM tweets where tweet_sentiment IS NULL limit 30";
+$sql_checkfortweet = "SELECT * FROM tweets where tweet_sentiment IS NULL";
 $dbresult = mysqli_query($conn, $sql_checkfortweet);
 $num_dbresult = mysqli_num_rows($dbresult);
 
