@@ -30,8 +30,9 @@ if ($num_dbresult > 0)
       var_dump($response);
       $tweet_sentiment = $response->sentiment;
       $tweet_sentimentscore = $response->score;
+      echo $tweet_sentiment . ": " . $tweet_sentimentscore;
       // $sql_insert = "INSERT INTO tweets (tweet_sentiment, tweet_sentimentscore) VALUES ('$tweet_sentiment', '$tweet_sentimentscore') WHERE ID = $id";
-      mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
+      //mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
     }
     $i++;
   }
