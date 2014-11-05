@@ -21,7 +21,6 @@ if ($num_dbresult > 0)
   {
     foreach ($dbresult as $row)
     {
-      $result
       $text = $row["tweet"];
       $id = $row["id"];
       $key = "932701ee8404e52ba67d3cf99478cbb08550263c";
