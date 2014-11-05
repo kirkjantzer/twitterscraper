@@ -25,9 +25,9 @@ if (mysqli_num_rows($dbresult) > 0) {
       $key = "932701ee8404e52ba67d3cf99478cbb08550263c";
       $url = "https://www.tweetsentimentapi.com/api/?key=$key&text=$text";
       $response = file_get_contents($url);
-      var_dump($response);
-      $tweet_sentiment = $response->sentiment;
-      $tweet_sentimentscore = $response->score;
+      //var_dump($response);
+      $tweet_sentiment = $response['sentiment'];
+      $tweet_sentimentscore = $response['score'];
       echo $tweet_sentiment . ": " . $tweet_sentimentscore;
       // $sql_insert = "INSERT INTO tweets (tweet_sentiment, tweet_sentimentscore) VALUES ('$tweet_sentiment', '$tweet_sentimentscore') WHERE ID = $id";
       //mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
