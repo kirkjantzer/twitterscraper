@@ -21,7 +21,7 @@ if (mysqli_num_rows($dbresult) > 0) {
     {
       $text = $row['tweet'];
       $id = $row['id'];
-      echo $id . ": " . $text ."\n"; 
+      //echo $id . ": " . $text ."\n"; 
       $key = "932701ee8404e52ba67d3cf99478cbb08550263c";
       $url = "https://www.tweetsentimentapi.com/api/?key=$key&text=$text";
       $response = file_get_contents($url);
@@ -30,9 +30,9 @@ if (mysqli_num_rows($dbresult) > 0) {
       $tweet_sentimentscore = "";
       if (!empty($jsonoutput->sentiment)) {$tweet_sentiment = $jsonoutput->sentiment;} else {$tweet_sentiment = NULL;}
       if (!empty($jsonoutput->score)) {$tweet_sentimentscore = $jsonoutput->score;} else {$tweet_sentimentscore = NULL;}
-      echo $tweet_sentiment . ": " . $tweet_sentimentscore ."\n\n";
-      //$sql_insert = "INSERT INTO tweets (tweet_sentiment, tweet_sentimentscore) VALUES ('$tweet_sentiment', '$tweet_sentimentscore') WHERE ID = $id";
-      //mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
+      //echo $tweet_sentiment . ": " . $tweet_sentimentscore ."\n\n";
+      $sql_insert = "INSERT INTO tweets (tweet_sentiment, tweet_sentimentscore) VALUES ('$tweet_sentiment', '$tweet_sentimentscore') WHERE ID = $id";
+      mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
     }
 } else {
     echo "0 results";
