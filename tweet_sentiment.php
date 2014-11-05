@@ -31,7 +31,7 @@ if (mysqli_num_rows($dbresult) > 0) {
       if (!empty($jsonoutput->sentiment)) {$tweet_sentiment = $jsonoutput->sentiment;} else {$tweet_sentiment = NULL;}
       if (!empty($jsonoutput->score)) {$tweet_sentimentscore = $jsonoutput->score;} else {$tweet_sentimentscore = NULL;}
       //echo $tweet_sentiment . ": " . $tweet_sentimentscore ."\n\n";
-      $sql_insert = "INSERT INTO tweets (tweet_sentiment, tweet_sentimentscore) VALUES ('$tweet_sentiment', '$tweet_sentimentscore') WHERE ID = $id";
+      $sql_update = "UPDATE tweets SET tweet_sentiment = 'tweet_sentiment', tweet_sentimentscore = '$tweet_sentimentscore' WHERE ID = '$id'";
       mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
     }
 } else {
