@@ -26,8 +26,8 @@ if (mysqli_num_rows($dbresult) > 0) {
       $url = "https://www.tweetsentimentapi.com/api/?key=$key&text=$text";
       $response = file_get_contents($url);
       $jsonoutput = json_decode($response);
-      $tweet_sentiment = $response->sentiment;
-      $tweet_sentimentscore = $response->score;
+      $tweet_sentiment = $jsonoutput->sentiment;
+      $tweet_sentimentscore = $jsonoutput->score;
       echo $tweet_sentiment . ": " . $tweet_sentimentscore ."\n\n";
       // $sql_insert = "INSERT INTO tweets (tweet_sentiment, tweet_sentimentscore) VALUES ('$tweet_sentiment', '$tweet_sentimentscore') WHERE ID = $id";
       //mysqli_query($conn, $sql_insert) or die(mysqli_error($conn));
